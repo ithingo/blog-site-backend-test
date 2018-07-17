@@ -1,5 +1,9 @@
 from django.test import TestCase
 
+from rest_framework.test import APIClient
+from rest_framework import status
+from django.urls import reverse
+
 
 from .models import Category, Post
 
@@ -41,3 +45,50 @@ class PostTestCase(TestCase):
         """Tests if the a post can be created"""
         self.assertEqual(self.post.title, 'Some title')
         self.assertEqual(self.post.category, self.category)
+
+
+class CategoryViewTestCase(TestCase):
+    """Test suit for Category api view"""
+
+    def setUp(self):
+        """Set up client, category and try to create via post request"""
+        self.client = APIClient()
+        category_name = 'Some category'
+        self.category_data = {
+            'name': category_name,
+        }
+        self.response = self.client.post(
+            reverse('create-category'),
+            self.category_data,
+            format='json',
+        )
+
+    def test_api_can_create_category(self):
+        """Test api can create category"""
+        self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
+
+
+class PostViewTestCase(TestCase):
+    """Test suit for Post api view"""
+
+    def setUp(self):
+        """Set up client, post and try to create via post request"""
+        self.client = APIClient()
+        self.post_data = {
+            'id': 2,
+            'title': 'Test post title',
+            'content': 'Some content for a post',
+            'category': {
+                'id': 3,
+                'name': 'Test category name',
+            }
+        }
+        self.response = self.client.post(
+            reverse('create-post'),
+            self.post_data,
+            format='json',
+        )
+
+    def test_api_can_create_post(self):
+        """Test api can create post"""
+        self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
