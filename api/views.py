@@ -35,7 +35,7 @@ class CategoryListView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class CategoryDetails(APIView):
+class CategoryDetailsView(APIView):
     """This class defines a behavior for category item"""
     def __get_object(self, pk):
         try:

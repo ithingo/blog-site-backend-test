@@ -7,7 +7,7 @@ from . import views
 
 urlpatterns = [
     path('categories/', views.CategoryListView.as_view(),),
-    path('categories/<int:pk>/', views.CategoryListView.as_view()),
+    path('categories/<int:pk>/', views.CategoryDetailsView.as_view()),
     path('postlist', views.PostCreateView.as_view(), name='create-post')
 ]
 
