@@ -71,6 +71,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blog_rest.wsgi.application'
 
+# Django REST api framework
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+
+    # this defines unrestrictered access to the api
+    'DEFAULT_PERMISSION_CLASSES': [],
+
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
