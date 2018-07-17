@@ -6,7 +6,8 @@ from . import views
 
 
 urlpatterns = [
-    path('categorylist', views.CategoryCreateView.as_view(), name='create-category'),
+    path('categories/', views.CategoryListView.as_view(),),
+    path('categories/<int:pk>/', views.CategoryListView.as_view()),
     path('postlist', views.PostCreateView.as_view(), name='create-post')
 ]
 
