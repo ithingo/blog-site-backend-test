@@ -78,8 +78,10 @@ REST_FRAMEWORK = {
 
     # this defines unrestrictered access to the api
     'DEFAULT_PERMISSION_CLASSES': [],
-
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
 }
 
 # Database
